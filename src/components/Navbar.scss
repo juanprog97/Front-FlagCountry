@@ -1,0 +1,48 @@
+
+.containerNav{
+    
+    box-sizing: border-box;
+    display: flex;
+    padding: 0.5em 1em ;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--colorElement);
+    box-shadow: 2px 0px 2px 2px var(--colorInput);
+    p{
+        font-weight: 800;
+        font-size:1.4em;
+        color: var(--colorText);
+    }
+    div#changeState{
+     cursor:pointer;
+    span{
+        transform: rotate(100deg);
+        font-size: 1.1em;
+        font-weight: 800;
+        color: var(--colorText);
+        &::before{
+            content: "\f186 ";
+            font-family: "Font Awesome 5 Free";
+            font-size: 1em;
+            
+        
+        }
+        &[theme-state='light']::before{
+            font-weight: normal;
+        }
+        &[theme-state='dark']::before {
+            
+            font-weight:bold;
+        }
+            
+     }
+
+     p{
+        color: var(--colorText);
+        font-weight: 800;
+     }   
+    }
+
+
+}
