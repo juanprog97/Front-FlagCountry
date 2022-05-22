@@ -2,23 +2,40 @@ import React from "react";
 import { DetailsFlag, CatalogFlags } from "./pages";
 import Navbar from "./components/Navbar";
 import "./App.scss";
-import { Provider } from "react-redux";
-import store from "./redux/store";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function App() {
+  const modeDark = useSelector((state: any) => state.modelTheme.modeDark);
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Navbar />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<CatalogFlags />} />
-            <Route path="/details/:country" element={<DetailsFlag />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </Provider>
+    <div
+      className="App"
+      style={{
+        ["--colorElement" as any]: [
+          `var(--clr-${modeDark ? "dark" : "light"}-elements)` as any,
+        ],
+        ["--colorInput" as any]: [
+          `var(--clr-${modeDark ? "dark" : "light"}-input)` as any,
+        ],
+        ["--colorText" as any]: [
+          `var(--clr-${modeDark ? "dark" : "light"}-text)` as any,
+        ],
+        ["--colorBackground" as any]: [
+          `var(--clr-${modeDark ? "dark" : "light"}-background)` as any,
+        ],
+        ["--fontWeight" as any]: [modeDark ? "bold" : "normal"],
+      }}
+    >
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<CatalogFlags />} />
+          <Route path="/details/:country" element={<DetailsFlag />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
