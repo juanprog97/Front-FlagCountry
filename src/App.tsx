@@ -32,7 +32,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CatalogFlags />} />
-          <Route path="/details/:country" element={<DetailsFlag />} />
+
+          <Route path="/details-flag" element={<DetailsFlag />} />
         </Routes>
       </BrowserRouter>
     </div>

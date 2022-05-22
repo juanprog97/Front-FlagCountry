@@ -71,6 +71,7 @@ export const MainPage = () => {
     },
   ];
   const allFlags = list.map((flag, index) => {
+    //Normal Element
     return (
       <div id="itemFlag" key={index}>
         <div id="imageFlag">
@@ -94,6 +95,21 @@ export const MainPage = () => {
       </div>
     );
   });
+  const loadingFlags = Array(10) //Making SkELETON Loading :)
+    .fill(0)
+    .map((e, i) => {
+      return (
+        <div id="itemFlag" key={i}>
+          <div id="imageFlagSke"></div>
+          <div className="container-infoSke">
+            <div id="infoSke"></div>
+            <div id="infoSke"></div>
+            <div id="infoSke"></div>
+            <div id="infoSke"></div>
+          </div>
+        </div>
+      );
+    });
 
   return (
     <section className="containerCatalog">
@@ -122,7 +138,7 @@ export const MainPage = () => {
             </div>
           </div>
         </div> */}
-        {allFlags}
+        {loadingFlags /*allFlags*/}
       </div>
     </section>
   );
