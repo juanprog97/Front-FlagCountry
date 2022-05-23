@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CatalogFlags.scss";
 import InputSearch from "../../components/InputSearch";
 import FilterInput from "../../components/FilterInput";
+import { AppStore } from "../../redux/store";
+import { useFetchAndLoad, useAsync } from "../../hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllFlag } from "../../services/flag.services";
+import { createListFlag, filterFlags } from "../../redux/states/ListFlags";
+import { createListFlagAdapter } from "../../adapters";
 
 export const MainPage = () => {
   const list = [
@@ -70,15 +76,20 @@ export const MainPage = () => {
       name: "China",
     },
   ];
-  const allFlags = list.map((flag, index) => {
+
+  const { loading, callEndpoint } = useFetchAndLoad();
+  const dispatch = useDispatch();
+  const listFlags = useSelector((store: AppStore) => store.flags.listFlag);
+
+  const allFlags = listFlags.map((flag: any, index: any) => {
     //Normal Element
     return (
       <div id="itemFlag" key={index}>
         <div id="imageFlag">
-          <img src="https://flagcdn.com/cn.svg" alt="" />
+          <img src={flag.srcImage} alt="" />
         </div>
         <div className="container-info">
-          <h3>{flag.name}</h3>
+          <h3>{flag.titleName}</h3>
           <div id="itemInfoData">
             <p>Population:</p>
             <p>{flag.population}</p>
@@ -95,7 +106,8 @@ export const MainPage = () => {
       </div>
     );
   });
-  const loadingFlags = Array(10) //Making SkELETON Loading :)
+
+  const loadingFlags = Array(10)
     .fill(0)
     .map((e, i) => {
       return (
@@ -109,37 +121,20 @@ export const MainPage = () => {
           </div>
         </div>
       );
-    });
+    }); //Making SkELETON Loading :)
+  const flags = async () => await callEndpoint(fetchAllFlag());
+  const loadAllFlag = (data: any) => {
+    dispatch(createListFlag(createListFlagAdapter(data)));
+  };
+  useAsync(flags, loadAllFlag, () => {}); //LoadAll Flags
 
   return (
     <section className="containerCatalog">
       <div className="containerOptions">
-        <InputSearch />
-        <FilterInput />
+        {loading ? <></> : <InputSearch />}
+        {loading ? <></> : <FilterInput />}
       </div>
-      <div className="dataContent">
-        {/* <div id="itemFlag">
-          <div id="imageFlag">
-            <img src="https://flagcdn.com/cn.svg" alt="" />
-          </div>
-          <div className="container-info">
-            <h3>Example</h3>
-            <div id="itemInfoData">
-              <p>Population:</p>
-              <p>4.324.234.343</p>
-            </div>
-            <div id="itemInfoData">
-              <p>Region:</p>
-              <p>Asian</p>
-            </div>
-            <div id="itemInfoData">
-              <p>Capital:</p>
-              <p>Shangai</p>
-            </div>
-          </div>
-        </div> */}
-        {loadingFlags /*allFlags*/}
-      </div>
+      <div className="dataContent">{loading ? loadingFlags : allFlags}</div>
     </section>
   );
 };

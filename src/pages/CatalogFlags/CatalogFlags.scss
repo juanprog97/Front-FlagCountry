@@ -30,6 +30,7 @@
     padding: 2em 5em;
     background-color:var(--colorBackground);
     
+    
     .containerOptions{
         display: flex;
             flex-direction: row;
@@ -37,10 +38,13 @@
     }
     .dataContent{
         display: grid;
+        max-height: 80vh;
+        overflow-y: scroll;
         grid-template-columns: repeat(4,calc(100%/4 - 25px));
         justify-content: center;
         gap: 3em;
-        padding: 3em 1.5em 0em 1.5em;
+        padding: 0em 1.5em 0em 1.5em;
+        margin: 3em 0em 0em 0em;
         color: var(--colorText);
         #itemFlag{
             display: flex;
@@ -52,8 +56,10 @@
            
             #imageFlag{
                 width: 100%;
+                height:14vw;
                 img{
-                    width:100%;;
+                    width:100%;
+                    height: 100%;
                     border-radius: 5px 5px 0px 0px;
                 }
             }
