@@ -2,4 +2,29 @@
     display: block;
     height: 100vh    ;
     overflow-y: hidden;
+
+    ::-webkit-scrollbar {
+            width: 15px;
+            
+            /* width of the entire scrollbar */
+        }
+    
+        ::-webkit-scrollbar-track {
+         
+            background: var(--colorElement);
+            border-radius:0.2em;
+            /* color of the tracking area */
+        }
+    
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--colorBackground);
+            /* color of the scroll thumb */
+            /* roundness of the scroll thumb */
+            border: 2px solid var(--colorInput);
+            border-radius: 0.2em;
+            /* creates padding around scroll thumb */
+    
+        }
 }
+
+
