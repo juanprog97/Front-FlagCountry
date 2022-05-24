@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./DetailsFlag.scoped.scss";
+import { useParams } from "react-router-dom";
+import { useFetchAndLoad, useAsync } from "../../hooks";
+import { createItemFlagAdapter } from "../../adapters";
+import { searchFlagByName } from "../../services/flag.services";
 
 export const DetailsFlag = () => {
+  const { name } = useParams();
+  const { loading, callEndpoint } = useFetchAndLoad();
+  const [flagDetail, setFlagDetail] = useState({
+    titleName: "",
+    nativeName: "",
+    population: "",
+    region: "",
+    subRegion: "",
+    capital: "",
+    srcImage: "",
+    topLevelDomain: [],
+    currencies: "",
+    languages: "",
+    borderCountries: [],
+  });
+  const loadFlagDetail = async () => await callEndpoint(searchFlagByName(name));
+
+  const changeStateFlag = (data: any) => {
+    console.log(createItemFlagAdapter(data[0]));
+    setFlagDetail({ ...createItemFlagAdapter(data[0]) });
+  };
+  useAsync(loadFlagDetail, changeStateFlag, () => {});
+
   return (
     <section className="containerDetailsFlag">
       <button>
@@ -17,61 +44,61 @@ export const DetailsFlag = () => {
       </button>
       <div className="containerDetailsText">
         <div className="imgFlag">
-          <img src="https://flagcdn.com/cn.svg" alt="" />
+          <img src={flagDetail.srcImage} alt="" />
         </div>
 
         <div className="detailsText">
-          <h2>China</h2>
+          <h2>{flagDetail.titleName}</h2>
           <div id="listDetails">
             <div id="columnText">
               <p id="itemDetail">
                 <span>Native Name: </span>
-                answer
+                {flagDetail.nativeName}
               </p>
 
               <p id="itemDetail">
                 <span>Population: </span>
-                answer
+                {flagDetail.population}
               </p>
 
               <p id="itemDetail">
                 <span>Region: </span>
-                answer
+                {flagDetail.region}
               </p>
 
               <p id="itemDetail">
-                <span>Suspanregion: </span>
-                answer
+                <span>Sub region: </span>
+                {flagDetail.subRegion}
               </p>
 
               <p id="itemDetail">
                 <span>Capital: </span>
-                answer
+                {flagDetail.capital}
               </p>
             </div>
             <div id="columnText">
               <p id="itemDetail">
                 <span>Top Level Domain: </span>
-                answer
+                {flagDetail.topLevelDomain}
               </p>
 
               <p id="itemDetail">
                 <span>Currencies: </span>
-                answer
+                {flagDetail.currencies}
               </p>
 
               <p id="itemDetail">
                 <span>Languages: </span>
-                answer
+                {flagDetail.languages}
               </p>
             </div>
           </div>
           <div className="listBorder">
             <p>Borders</p>
             <div id="listItemBorders">
-              <button>France</button>
-              <button>Germany</button>
-              <button>Netherlands</button>
+              {flagDetail.borderCountries.map((border, index) => {
+                return <button key={index}>{border}</button>;
+              })}
             </div>
           </div>
         </div>

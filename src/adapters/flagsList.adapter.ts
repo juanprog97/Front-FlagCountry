@@ -8,7 +8,7 @@ export const createListFlagAdapter: any = (listFlag:any[]) => {
    
         const adaptFlag: FlagDetails = {
             titleName: flag.name.common,
-            nativeName: flag.demonym,
+            nativeName: flag.name.nativeName.common,
             population: numberWithCommas(flag.population),
             region: flag.region,
             subRegion: flag.subregion,

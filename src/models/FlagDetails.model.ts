@@ -9,7 +9,7 @@ export  interface FlagDetails {
     subRegion: string,
     capital: string,
     srcImage: string,
-    topLevelDomain: string,
+    topLevelDomain: string[],
     currencies: string,
     languages: string,
     borderCountries: string[]

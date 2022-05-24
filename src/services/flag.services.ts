@@ -12,3 +12,15 @@ export const fetchFlags = (value:string = "") =>{
     }
 
 }
+
+export const searchFlagByName = (value:string = "") =>{
+    const controller = loadAbort();
+    
+    const url = value == "" ? "https://restcountries.com/v2/name/colombia" : `https://restcountries.com/v2/name/${value}`
+  
+    return {
+        call: axios.get<any>(url,{ signal: controller.signal }),
+        controller
+    }
+
+}

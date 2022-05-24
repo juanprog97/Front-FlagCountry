@@ -3,6 +3,7 @@ import { modelThemeSlice } from './states/theme';
 import { modelFlagsReducer } from './states/ListFlags';
 
 
+
 export interface AppStore{
     modelTheme: any,
     flags: any,
@@ -12,7 +13,7 @@ export interface AppStore{
 export default configureStore<AppStore>({
     reducer: {
         modelTheme: modelThemeSlice.reducer,
-        flags: modelFlagsReducer.reducer
+        flags: modelFlagsReducer.reducer,
     },
     devTools:true
 })

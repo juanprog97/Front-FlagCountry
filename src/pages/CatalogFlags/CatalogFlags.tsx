@@ -6,33 +6,58 @@ import { AppStore } from "../../redux/store";
 import { useFetchAndLoad, useAsync } from "../../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFlags } from "../../services/flag.services";
-import { createListFlag, filterFlags } from "../../redux/states/ListFlags";
+import { createListFlag } from "../../redux/states/ListFlags";
 import { createListFlagAdapter } from "../../adapters";
 import { FlagDetails } from "../../models";
+import { useNavigate } from "react-router-dom";
 
 export const MainPage = () => {
   const { loading, callEndpoint } = useFetchAndLoad();
   const dispatch = useDispatch();
   const listAllFlags = useSelector((store: AppStore) => store.flags.listFlag);
   const [regionFilter, setRegionFilter] = useState("");
+  const [nameSearchFlag, setNameSearchFlag] = useState("");
+  const navigate = useNavigate();
 
+  //Make query api
   const flags = async () => await callEndpoint(fetchFlags(regionFilter));
 
   const loadFlags = (data: any) => {
     dispatch(createListFlag(createListFlagAdapter(data)));
   };
-  useAsync(flags, loadFlags, () => {}, [regionFilter]); //LoadAll Flags
+  useAsync(flags, loadFlags, () => {}, [regionFilter]);
 
-  const flagFilter: any = listAllFlags.filter((flag: FlagDetails) => flag);
+  const flagFilter: any = listAllFlags.filter((flag: FlagDetails) => {
+    return (
+      flag.titleName.toUpperCase().indexOf(nameSearchFlag.toUpperCase()) > -1
+    );
+  });
+
+  //Props of Children
 
   const dataFilter = useCallback((regionFilter: string) => {
     setRegionFilter(regionFilter);
   }, []);
 
+  const dataNameSearch = useCallback((nameSearchFlag: string) => {
+    setNameSearchFlag(nameSearchFlag);
+  }, []);
+
+  //Handle pass route details flag
+  const handleOnDetailPage = (event: any) => {
+    const nameFlag = event.currentTarget.getAttribute("data-name");
+    navigate(`/details-flag/${nameFlag}`);
+  };
+
   const allFlags = flagFilter.map((flag: any, index: any) => {
     //Normal Element
     return (
-      <div id="itemFlag" key={index}>
+      <div
+        id="itemFlag"
+        key={index}
+        onClick={handleOnDetailPage}
+        data-name={flag.titleName}
+      >
         <div id="imageFlag">
           <img src={flag.srcImage} alt="" />
         </div>
@@ -74,7 +99,7 @@ export const MainPage = () => {
   return (
     <section className="containerCatalog">
       <div className="containerOptions">
-        {loading ? <></> : <InputSearch />}
+        {loading ? <></> : <InputSearch searchNameFlag={dataNameSearch} />}
         {loading ? <></> : <FilterInput filterDataCurrently={dataFilter} />}
       </div>
       <div className="dataContent">{loading ? loadingFlags : allFlags}</div>

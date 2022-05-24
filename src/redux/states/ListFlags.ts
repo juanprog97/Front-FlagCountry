@@ -5,11 +5,13 @@ import { FlagDetails } from "../../models/FlagDetails.model";
 
 interface FlagReducer{
     listFlag: null | never[] | FlagDetails[];
+    listCode: any;
     
 }
 
 const initialState: FlagReducer = {
     listFlag: [],
+    listCode: {}
     
 }
 
@@ -20,17 +22,14 @@ export const modelFlagsReducer = createSlice({
     initialState,
     reducers: {
         createListFlag: (state, action: PayloadAction<FlagDetails[]> ) => {
-            state.listFlag = action.payload;    
+            state.listFlag = action.payload;   
+            
         },
-        filterFlags: (state, action: PayloadAction<FlagDetails[]>) => {
-              if (action.payload!)
-                state.listFlag = action.payload;
-           
-        }
+       
 
     }
 
 })
 
-export const { createListFlag,filterFlags } = modelFlagsReducer.actions
+export const { createListFlag } = modelFlagsReducer.actions
 export default modelFlagsReducer.reducer

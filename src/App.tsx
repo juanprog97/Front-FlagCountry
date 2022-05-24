@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CatalogFlags />} />
 
-          <Route path="/details-flag" element={<DetailsFlag />} />
+          <Route path="/details-flag/:name" element={<DetailsFlag />} />
         </Routes>
       </BrowserRouter>
     </div>
