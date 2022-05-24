@@ -1,87 +1,35 @@
-import React, { useEffect } from "react";
+import { useState, useCallback } from "react";
 import "./CatalogFlags.scss";
 import InputSearch from "../../components/InputSearch";
 import FilterInput from "../../components/FilterInput";
 import { AppStore } from "../../redux/store";
 import { useFetchAndLoad, useAsync } from "../../hooks";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllFlag } from "../../services/flag.services";
+import { fetchFlags } from "../../services/flag.services";
 import { createListFlag, filterFlags } from "../../redux/states/ListFlags";
 import { createListFlagAdapter } from "../../adapters";
+import { FlagDetails } from "../../models";
 
 export const MainPage = () => {
-  const list = [
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-    {
-      population: "232.323.423",
-      region: "Asian",
-      capital: "Asian",
-      name: "China",
-    },
-  ];
-
   const { loading, callEndpoint } = useFetchAndLoad();
   const dispatch = useDispatch();
-  const listFlags = useSelector((store: AppStore) => store.flags.listFlag);
+  const listAllFlags = useSelector((store: AppStore) => store.flags.listFlag);
+  const [regionFilter, setRegionFilter] = useState("");
 
-  const allFlags = listFlags.map((flag: any, index: any) => {
+  const flags = async () => await callEndpoint(fetchFlags(regionFilter));
+
+  const loadFlags = (data: any) => {
+    dispatch(createListFlag(createListFlagAdapter(data)));
+  };
+  useAsync(flags, loadFlags, () => {}, [regionFilter]); //LoadAll Flags
+
+  const flagFilter: any = listAllFlags.filter((flag: FlagDetails) => flag);
+
+  const dataFilter = useCallback((regionFilter: string) => {
+    setRegionFilter(regionFilter);
+  }, []);
+
+  const allFlags = flagFilter.map((flag: any, index: any) => {
     //Normal Element
     return (
       <div id="itemFlag" key={index}>
@@ -122,17 +70,12 @@ export const MainPage = () => {
         </div>
       );
     }); //Making SkELETON Loading :)
-  const flags = async () => await callEndpoint(fetchAllFlag());
-  const loadAllFlag = (data: any) => {
-    dispatch(createListFlag(createListFlagAdapter(data)));
-  };
-  useAsync(flags, loadAllFlag, () => {}); //LoadAll Flags
 
   return (
     <section className="containerCatalog">
       <div className="containerOptions">
         {loading ? <></> : <InputSearch />}
-        {loading ? <></> : <FilterInput />}
+        {loading ? <></> : <FilterInput filterDataCurrently={dataFilter} />}
       </div>
       <div className="dataContent">{loading ? loadingFlags : allFlags}</div>
     </section>

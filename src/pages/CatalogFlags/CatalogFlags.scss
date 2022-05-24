@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     padding: 2em 5em;
+    height: 99%;
     background-color:var(--colorBackground);
     
     
@@ -39,7 +40,8 @@
     .dataContent{
         display: grid;
         max-height: 80vh;
-        overflow-y: scroll;
+        overflow-y: auto;
+        overflow-x: hidden;
         grid-template-columns: repeat(4,calc(100%/4 - 25px));
         justify-content: center;
         gap: 3em;

@@ -1,24 +1,29 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import "./FilterInput.scoped.scss";
 
-const FilterInput = () => {
+const FilterInput = (props: any) => {
   const modeDark = useSelector((state: any) => state.modelTheme.modeDark);
+  const HandleChangeFilter = (event: any) => {
+    props.filterDataCurrently(event.target.value);
+  };
   return (
     <>
       <select
         className="filterContinents"
         data-theme={modeDark ? "dark" : "light"}
-        name="browser"
+        name="continent"
+        onChange={HandleChangeFilter}
       >
         <option disabled selected value="-1">
           Filter by region
         </option>
-        <option value="firefox">Firefox</option>
-        <option value="ie">IE</option>
-        <option value="chrome">Chrome</option>
-        <option value="opera">Opera</option>
-        <option value="safari">Safari</option>
+        <option value="">All</option>
+        <option value="europe">Europe</option>
+        <option value="ame">America</option>
+        <option value="asia">Asia</option>
+        <option value="oceania">Europe</option>
+        <option value="africa">Africa</option>
+        <option value="oceania">Oceania</option>
       </select>
     </>
   );
