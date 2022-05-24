@@ -18,6 +18,7 @@
     "react-router-dom": "^6.3.0",
     "react-scoped-styles": "^0.5.6",
     "react-scripts": "5.0.1",
+    "redux-persist": "^6.0.0",
     "sass": "^1.52.1",
     "typescript": "^4.6.4",
     "web-vitals": "^2.1.4"

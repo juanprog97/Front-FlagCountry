@@ -18,11 +18,10 @@ const FilterInput = (props: any) => {
           Filter by region
         </option>
         <option value="">All</option>
-        <option value="europe">Europe</option>
+        <option value="africa">Africa</option>
         <option value="ame">America</option>
         <option value="asia">Asia</option>
-        <option value="oceania">Europe</option>
-        <option value="africa">Africa</option>
+        <option value="europe">Europe</option>
         <option value="oceania">Oceania</option>
       </select>
     </>

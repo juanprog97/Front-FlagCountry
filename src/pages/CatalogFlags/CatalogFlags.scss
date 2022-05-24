@@ -28,9 +28,9 @@
     display: flex;
     flex-direction: column;
     padding: 2em 5em;
-    height: 99%;
+    height: 100%;
     background-color:var(--colorBackground);
-    
+   
     
     .containerOptions{
         display: flex;
@@ -44,8 +44,8 @@
         overflow-x: hidden;
         grid-template-columns: repeat(4,calc(100%/4 - 25px));
         justify-content: center;
-        gap: 3em;
-        padding: 0em 1.5em 0em 1.5em;
+        gap:  3em;
+        padding: 0em 1.5em 5em 1.5em;
         margin: 3em 0em 0em 0em;
         color: var(--colorText);
         #itemFlag{
@@ -55,6 +55,7 @@
             box-shadow: 0px 0px 5px  4px rgba(0, 0, 0, 0.05);
             width: 100%;
             border-radius: 5px;
+            margin-bottom: 1em;;
             cursor:pointer;
            
             #imageFlag{
@@ -66,10 +67,18 @@
                     border-radius: 5px 5px 0px 0px;
                 }
             }
+            #nameFlag{
+                margin: 1.5em 1em 1em 1em;
+               
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
             
             .container-info{
-                    padding: 0em  1.2em 2.8em 1.2em;
+                    padding: 0em  1.2em 3em 1.2em;
                     gap: 0.2em;
+                    justify-self: center;
                     #itemInfoData {
                         margin: 0.5em 0em;
                         display: flex;
@@ -77,6 +86,7 @@
                         font-size: 14px;
                         gap:0.2em;
                         font-weight: 600;
+                        
                         p{
                             margin:0;
                             &:nth-child(1) {

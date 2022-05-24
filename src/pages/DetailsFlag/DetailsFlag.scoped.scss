@@ -33,11 +33,11 @@
     }
     .containerDetailsText{
         display: grid;
-        grid-template-columns: 0.6fr auto;
+        grid-template-columns: 0.5fr auto;
         gap: 8em;
         .imgFlag{
-            width:fit-content;
-            height:fit-content;
+            width:30vw;
+            height:20vw;
             
             img{
                 width:100%;
@@ -83,33 +83,33 @@
                 
                margin-bottom: 2em;
             }
+
+                
             .listBorder{
-                align-items: center;
-                display: flex;
-                flex-direction: row;
-                gap: 1em;
+                display:flex;
+                flex-wrap: wrap;
                 width: 100%;
-                p{
-                    margin:0;
-                    font-weight: 600;
-                }
-                #listItemBorders{
-                    display:flex;
-                    flex-wrap: wrap;
-                    width: 100%;
-                    gap: 0.5em;
-                    button{
-                        color: var(--colorText);
-                        width:auto;
-                        padding: 0.5em 1em ;
-                        border-radius: 2px;
-                        border:none;
-                        outline:none;
-                        background-color: var(--colorElement);
-                        box-shadow: 0px 0px 1px 4px rgba(0, 0, 0, 0.05);
+                flex-direction: row;
+                justify-content: start;
+                align-items: center;
+                gap:0em 0.8em;
+                p {
+                        margin: 0;
+                        font-weight: 600;
                     }
+                button{
+                    color: var(--colorText);
+                    margin: 10px 0px;
+                    width:auto;
+                    padding: 0.5em 1em ;
+                    border-radius: 2px;
+                    border:none;
+                    outline:none;
+                    background-color: var(--colorElement);
+                    box-shadow: 0px 0px 1px 4px rgba(0, 0, 0, 0.05);
                 }
             }
+            
         }
         
     }

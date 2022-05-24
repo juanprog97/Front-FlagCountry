@@ -1,10 +1,9 @@
 import React from "react";
 import { DetailsFlag, CatalogFlags } from "./pages";
 import Navbar from "./components/Navbar";
-import "./App.scss";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./App.scss";
 
 function App() {
   const modeDark = useSelector((state: any) => state.modelTheme.modeDark);
@@ -32,8 +31,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CatalogFlags />} />
-
           <Route path="/details-flag/:name" element={<DetailsFlag />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -8,9 +8,9 @@ export const createItemFlagAdapter:any = (flag: any) => ({
     region: flag.region,
     subRegion: flag.subregion,
     capital: flag.capital ? flag.capital : "N/A" ,
-    srcImage: flag.flags["svg"],
+    srcImage: flag.flags["png"],
     topLevelDomain: flag.topLevelDomain,
     currencies: flag.currencies ? listSeparatorComma(flag.currencies,"name"): "",
     languages: flag.languages ? listSeparatorComma(flag.languages,"name"): "",
-    borderCountries: flag.hasOwnProperty("border") ? flag.border: [] ,
+    borderCountries: flag.hasOwnProperty("borders") ? flag.borders: [] ,
 })

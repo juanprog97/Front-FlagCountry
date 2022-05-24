@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DetailsFlag.scoped.scss";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useFetchAndLoad, useAsync } from "../../hooks";
-import { createItemFlagAdapter } from "../../adapters";
-import { searchFlagByName } from "../../services/flag.services";
+import { createItemFlagAdapter, codeFlagAdapter } from "../../adapters";
+import { searchFlagByName, fetchFlags } from "../../services/flag.services";
+import { useNavigate } from "react-router-dom";
 
 export const DetailsFlag = () => {
   const { name } = useParams();
+  const [listCodes, setListCodes] = useState({});
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const { loading, callEndpoint } = useFetchAndLoad();
   const [flagDetail, setFlagDetail] = useState({
     titleName: "",
@@ -21,17 +27,29 @@ export const DetailsFlag = () => {
     languages: "",
     borderCountries: [],
   });
-  const loadFlagDetail = async () => await callEndpoint(searchFlagByName(name));
 
+  const loadFlagDetail = async () => await callEndpoint(searchFlagByName(name));
+  const loadCodeFlag = async () => await callEndpoint(fetchFlags());
   const changeStateFlag = (data: any) => {
-    console.log(createItemFlagAdapter(data[0]));
     setFlagDetail({ ...createItemFlagAdapter(data[0]) });
   };
-  useAsync(loadFlagDetail, changeStateFlag, () => {});
+
+  const changeStateCodesFlags = (data: any) => {
+    setListCodes(codeFlagAdapter(data));
+
+    return codeFlagAdapter(data);
+  };
+
+  useAsync(loadCodeFlag, changeStateCodesFlags, () => {});
+  useAsync(loadFlagDetail, changeStateFlag, () => {}, [name]);
 
   return (
     <section className="containerDetailsFlag">
-      <button>
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
         <svg
           width="17px"
           height="17px"
@@ -95,11 +113,16 @@ export const DetailsFlag = () => {
           </div>
           <div className="listBorder">
             <p>Borders</p>
-            <div id="listItemBorders">
-              {flagDetail.borderCountries.map((border, index) => {
-                return <button key={index}>{border}</button>;
-              })}
-            </div>
+            {flagDetail.borderCountries.map((border, index) => {
+              return (
+                <button
+                  onClick={() => navigate(`/details-flag/${listCodes[border]}`)}
+                  key={index}
+                >
+                  {listCodes[border]}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>

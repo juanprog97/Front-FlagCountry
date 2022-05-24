@@ -11,7 +11,7 @@ interface FlagReducer{
 
 const initialState: FlagReducer = {
     listFlag: [],
-    listCode: {}
+    listCode: null
     
 }
 
@@ -25,11 +25,15 @@ export const modelFlagsReducer = createSlice({
             state.listFlag = action.payload;   
             
         },
+        createListCode: (state, action: PayloadAction<any>) => {
+            
+            state.listCode = action.payload; 
+        }
        
 
     }
 
 })
 
-export const { createListFlag } = modelFlagsReducer.actions
+export const { createListFlag,createListCode } = modelFlagsReducer.actions
 export default modelFlagsReducer.reducer

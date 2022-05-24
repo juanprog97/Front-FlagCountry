@@ -61,8 +61,8 @@ export const MainPage = () => {
         <div id="imageFlag">
           <img src={flag.srcImage} alt="" />
         </div>
+        <h3 id="nameFlag">{flag.titleName}</h3>
         <div className="container-info">
-          <h3>{flag.titleName}</h3>
           <div id="itemInfoData">
             <p>Population:</p>
             <p>{flag.population}</p>
@@ -102,7 +102,9 @@ export const MainPage = () => {
         {loading ? <></> : <InputSearch searchNameFlag={dataNameSearch} />}
         {loading ? <></> : <FilterInput filterDataCurrently={dataFilter} />}
       </div>
-      <div className="dataContent">{loading ? loadingFlags : allFlags}</div>
+      <div className="dataContent">
+        {loading || listAllFlags.length == 0 ? loadingFlags : allFlags}
+      </div>
     </section>
   );
 };
