@@ -2,6 +2,7 @@
   "name": "project-flags",
   "version": "0.1.0",
   "private": true,
+  "homepage":"https://juanprog97.github.io",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@types/jest": "^27.5.1",
@@ -24,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +54,7 @@
     "@types/enzyme": "^3.10.12",
     "@types/redux-mock-store": "^1.0.3",
     "enzyme": "^3.11.0",
+    "gh-pages": "^4.0.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-mock-store": "^1.5.4"
   }
