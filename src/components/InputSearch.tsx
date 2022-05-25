@@ -1,7 +1,9 @@
-import React from "react";
+import { useState } from "react";
 import "./InputSearch.scoped.scss";
 const InputSearch = (props: any) => {
+  const [textValue, setTextValue] = useState("");
   const HandleOnChange = (event: any) => {
+    setTextValue(event.target.value);
     props.searchNameFlag(event.target.value);
   };
   return (
@@ -12,6 +14,7 @@ const InputSearch = (props: any) => {
         placeholder="Search for country..."
         onChange={HandleOnChange}
         role="search-flag-name"
+        value={textValue}
       />
     </div>
   );

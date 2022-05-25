@@ -96,8 +96,8 @@ export const MainPage = () => {
   return (
     <section className="containerCatalog">
       <div className="containerOptions">
-        {loading ? <></> : <InputSearch searchNameFlag={dataNameSearch} />}
-        {loading ? <></> : <FilterInput filterDataCurrently={dataFilter} />}
+        <InputSearch searchNameFlag={dataNameSearch} />
+        <FilterInput filterDataCurrently={dataFilter} />
       </div>
       <div className="dataContent" title="data-content">
         {loading || listAllFlags.length == 0 ? loadingFlags : allFlags}

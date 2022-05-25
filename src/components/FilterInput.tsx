@@ -1,11 +1,41 @@
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import "./FilterInput.scoped.scss";
 
 const FilterInput = (props: any) => {
   const modeDark = useSelector((state: any) => state.modelTheme.modeDark);
+  const [valueRegion, setValueRegion] = useState("-1");
+  const valuesRegion = [
+    {
+      label: "All",
+      value: "",
+    },
+    {
+      label: "Africa",
+      value: "africa",
+    },
+    {
+      label: "America",
+      value: "ame",
+    },
+    {
+      label: "Asia",
+      value: "asia",
+    },
+    {
+      label: "Europe",
+      value: "europe",
+    },
+    {
+      label: "Oceania",
+      value: "oceania",
+    },
+  ];
   const HandleChangeFilter = (event: any) => {
     event.preventDefault();
+
     props.filterDataCurrently(event.target.value);
+    setValueRegion(event.target.value);
   };
   return (
     <>
@@ -14,17 +44,14 @@ const FilterInput = (props: any) => {
         data-theme={modeDark ? "dark" : "light"}
         title="dropdown-region"
         onChange={HandleChangeFilter}
-        defaultValue=""
+        value={valueRegion}
       >
-        <option disabled hidden>
+        <option value="-1" disabled>
           Filter by region
         </option>
-        <option value="">All</option>
-        <option value="africa">Africa</option>
-        <option value="ame">America</option>
-        <option value="asia">Asia</option>
-        <option value="europe">Europe</option>
-        <option value="oceania">Oceania</option>
+        {valuesRegion.map((option) => {
+          return <option value={option.value}>{option.label}</option>;
+        })}
       </select>
     </>
   );

@@ -1,7 +1,11 @@
 import React from "react";
 import { DetailsFlag, CatalogFlags } from "./pages";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./App.scss";
@@ -29,13 +33,14 @@ function App() {
       }}
     >
       <Navbar />
-      <BrowserRouter>
+      
         <Routes>
           <Route path="/" element={<CatalogFlags />} />
           <Route path="/details-flag/:name" element={<DetailsFlag />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </BrowserRouter>
+     
+
     </div>
   );
 }
