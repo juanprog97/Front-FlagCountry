@@ -2,7 +2,7 @@
   "name": "project-flags",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://juanprog97.github.io",
+  "homepage":"https://juanprog97.github.io/Front-FlagCountry",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@types/jest": "^27.5.1",
