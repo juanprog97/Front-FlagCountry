@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Front-FlagCountry/static/css/main.da5bdc28.css",
-    "main.js": "/Front-FlagCountry/static/js/main.821294b1.js",
+    "main.js": "/Front-FlagCountry/static/js/main.835ea8ce.js",
     "static/js/787.36e74271.chunk.js": "/Front-FlagCountry/static/js/787.36e74271.chunk.js",
     "index.html": "/Front-FlagCountry/index.html",
     "main.da5bdc28.css.map": "/Front-FlagCountry/static/css/main.da5bdc28.css.map",
-    "main.821294b1.js.map": "/Front-FlagCountry/static/js/main.821294b1.js.map",
+    "main.835ea8ce.js.map": "/Front-FlagCountry/static/js/main.835ea8ce.js.map",
     "787.36e74271.chunk.js.map": "/Front-FlagCountry/static/js/787.36e74271.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.da5bdc28.css",
-    "static/js/main.821294b1.js"
+    "static/js/main.835ea8ce.js"
   ]
 }
