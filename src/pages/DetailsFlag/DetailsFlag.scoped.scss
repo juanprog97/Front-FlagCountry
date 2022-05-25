@@ -97,13 +97,14 @@
                         margin: 0;
                         font-weight: 600;
                     }
-                button{
+                button#bordersItems{
                     color: var(--colorText);
                     margin: 10px 0px;
                     width:auto;
                     padding: 0.5em 1em ;
                     border-radius: 2px;
                     border:none;
+                    cursor:pointer;
                     outline:none;
                     background-color: var(--colorElement);
                     box-shadow: 0px 0px 1px 4px rgba(0, 0, 0, 0.05);

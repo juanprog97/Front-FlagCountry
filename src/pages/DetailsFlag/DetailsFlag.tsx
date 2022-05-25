@@ -116,7 +116,7 @@ export const DetailsFlag = () => {
             <p>Borders</p>
             {flagDetail.borderCountries.map((border, index) => {
               return (
-                <button
+                <button id="bordersItems"
                   onClick={(event) => {
                     event.preventDefault();
                     navigate(`/details-flag/${listCodes[border]}`);
