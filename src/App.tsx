@@ -3,6 +3,7 @@ import { DetailsFlag, CatalogFlags } from "./pages";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import "./App.scss";
 
 function App() {

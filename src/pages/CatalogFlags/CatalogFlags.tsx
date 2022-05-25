@@ -41,6 +41,7 @@ export const MainPage = () => {
 
   //Handle pass route details flag
   const handleOnDetailPage = (event: any) => {
+    event.preventDefault();
     const nameFlag = event.currentTarget.getAttribute("data-name");
     navigate(`/details-flag/${nameFlag}`);
   };
@@ -98,7 +99,7 @@ export const MainPage = () => {
         {loading ? <></> : <InputSearch searchNameFlag={dataNameSearch} />}
         {loading ? <></> : <FilterInput filterDataCurrently={dataFilter} />}
       </div>
-      <div className="dataContent">
+      <div className="dataContent" title="data-content">
         {loading || listAllFlags.length == 0 ? loadingFlags : allFlags}
       </div>
     </section>

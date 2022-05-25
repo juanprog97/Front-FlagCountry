@@ -4,6 +4,7 @@ import "./FilterInput.scoped.scss";
 const FilterInput = (props: any) => {
   const modeDark = useSelector((state: any) => state.modelTheme.modeDark);
   const HandleChangeFilter = (event: any) => {
+    event.preventDefault();
     props.filterDataCurrently(event.target.value);
   };
   return (
@@ -11,10 +12,11 @@ const FilterInput = (props: any) => {
       <select
         className="filterContinents"
         data-theme={modeDark ? "dark" : "light"}
-        name="continent"
+        title="dropdown-region"
         onChange={HandleChangeFilter}
+        defaultValue=""
       >
-        <option disabled selected value="-1">
+        <option disabled hidden>
           Filter by region
         </option>
         <option value="">All</option>

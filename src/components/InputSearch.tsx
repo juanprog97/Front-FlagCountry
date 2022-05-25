@@ -11,6 +11,7 @@ const InputSearch = (props: any) => {
         type="text"
         placeholder="Search for country..."
         onChange={HandleOnChange}
+        role="search-flag-name"
       />
     </div>
   );

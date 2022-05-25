@@ -46,7 +46,8 @@ export const DetailsFlag = () => {
   return (
     <section className="containerDetailsFlag">
       <button
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault();
           navigate("/");
         }}
       >
@@ -116,7 +117,10 @@ export const DetailsFlag = () => {
             {flagDetail.borderCountries.map((border, index) => {
               return (
                 <button
-                  onClick={() => navigate(`/details-flag/${listCodes[border]}`)}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    navigate(`/details-flag/${listCodes[border]}`);
+                  }}
                   key={index}
                 >
                   {listCodes[border]}
