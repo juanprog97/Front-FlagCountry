@@ -2,19 +2,15 @@ import { useState, useCallback } from "react";
 import "./CatalogFlags.scss";
 import InputSearch from "../../components/InputSearch";
 import FilterInput from "../../components/FilterInput";
-import { AppStore } from "../../redux/store";
 import { useFetchAndLoad, useAsync } from "../../hooks";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchFlags } from "../../services/flag.services";
-import { createListFlag } from "../../redux/states/ListFlags";
 import { createListFlagAdapter } from "../../adapters";
 import { FlagDetails } from "../../models";
 import { useNavigate } from "react-router-dom";
 
 export const MainPage = () => {
   const { loading, callEndpoint } = useFetchAndLoad();
-  const dispatch = useDispatch();
-  const listAllFlags = useSelector((store: AppStore) => store.flags.listFlag);
+  const [listAllFlags, setListAllFlags] = useState([]);
   const [regionFilter, setRegionFilter] = useState("");
   const [nameSearchFlag, setNameSearchFlag] = useState("");
   const navigate = useNavigate();
@@ -23,7 +19,7 @@ export const MainPage = () => {
   const flags = async () => await callEndpoint(fetchFlags(regionFilter));
 
   const loadFlags = (data: any) => {
-    dispatch(createListFlag(createListFlagAdapter(data)));
+    setListAllFlags(createListFlagAdapter(data));
   };
   useAsync(flags, loadFlags, () => {}, [regionFilter]);
 

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from "redux";
 import { modelThemeSlice } from './states/theme';
-import { modelFlagsReducer } from './states/ListFlags';
+
 import { persistStore, persistReducer,FLUSH,
     REHYDRATE,
     PAUSE,
@@ -11,13 +11,9 @@ import { persistStore, persistReducer,FLUSH,
 import storage from 'redux-persist/lib/storage'
 
 
-
-
-
 export interface AppStore{
     modelTheme: any,
-    flags: any,
-  //  flagSelected: any,
+   
 }
 const persistConfig = {
   key: 'root',
@@ -34,7 +30,6 @@ const persistedReducer = persistReducer(persistConfig,modelThemeSlice.reducer)
 
 export const store =  configureStore<AppStore>({
     reducer: combineReducers({
-        flags: modelFlagsReducer.reducer,
         modelTheme :persistedReducer
     }),
     middleware: (getDefaultMiddleware:any) => getDefaultMiddleware({    
