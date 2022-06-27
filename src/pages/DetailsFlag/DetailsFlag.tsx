@@ -113,20 +113,23 @@ export const DetailsFlag = () => {
             </div>
           </div>
           <div className="listBorder">
-            <p>Borders</p>
-            {flagDetail.borderCountries.map((border, index) => {
-              return (
-                <button id="bordersItems"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    navigate(`/details-flag/${listCodes[border]}`);
-                  }}
-                  key={index}
-                >
-                  {listCodes[border]}
-                </button>
-              );
-            })}
+            <p>Borders countries:</p>
+            <section id="list-button">
+              {flagDetail.borderCountries.map((border, index) => {
+                return (
+                  <button
+                    id="bordersItems"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      navigate(`/details-flag/${listCodes[border]}`);
+                    }}
+                    key={index}
+                  >
+                    {listCodes[border]}
+                  </button>
+                );
+              })}
+            </section>
           </div>
         </div>
       </div>
