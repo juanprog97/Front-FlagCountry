@@ -25,14 +25,14 @@
 .containerCatalog {
   display: flex;
   flex-direction: column;
-  padding: 2em 5em;
+
   height: 100%;
   background-color: var(--colorBackground);
   @media (min-width: 793px) {
-    padding: 2em 5em;
+    //padding: 2em 3em;
   }
   @media (max-width: 792px) and(min-width: 0px) {
-    padding: 1em 1em;
+    //padding: 1em 1em;
   }
 
   .containerOptions {
@@ -40,6 +40,7 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding: 2em 3em;
     @media (min-width: 793px) {
       display: flex;
       flex-direction: row;
@@ -56,14 +57,17 @@
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 20vw));
-    justify-content: center;
-    gap: 2em;
 
+    justify-content: center;
+    width: 100%;
     @media (min-width: 793px) {
-      //padding: 0em 7em 0em 0.5em;
+      gap: 3em;
+      grid-template-columns: repeat(auto-fill, minmax(295px, 15vw));
+      padding: 0em 0em 0em 0em;
     }
     @media (max-width: 792px) and(min-width: 0px) {
+      grid-template-columns: repeat(auto-fit, 80vw);
+      gap: 2em;
     }
     margin: 3em 0em 0em 0em;
     color: var(--colorText);
@@ -78,8 +82,14 @@
       cursor: pointer;
 
       #imageFlag {
-        width: 100%;
-        height: 14em;
+        @media (max-width: 792px) and(min-width: 0px) {
+          width: 100%;
+          height: 15em;
+        }
+        @media (min-width: 793px) {
+          width: 100%;
+          height: 25vh;
+        }
         img {
           width: 100%;
           height: 100%;
@@ -89,9 +99,11 @@
       #nameFlag {
         margin: 1.5em 1em 1em 1em;
 
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        @media (min-width: 793px) {
+          //overflow: hidden;
+          //white-space: nowrap;
+          //text-overflow: ellipsis;
+        }
       }
 
       .container-info {
